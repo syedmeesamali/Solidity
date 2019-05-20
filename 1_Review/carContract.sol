@@ -9,7 +9,7 @@ contract CarContract
         uint year;
     }
 
-    Car[] cars; //List or array to hold various car objects
+    CAR[] cars; //List or array to hold various car objects
     function addCar(string memory _name, uint _year) public returns (uint)
     {
         return cars.push(CAR(_name, _year)) - 1;   //Add a car to car list (array)
