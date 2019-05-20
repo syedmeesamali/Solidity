@@ -1,0 +1,21 @@
+pragma solidity 0.5.1;
+
+//This is the main contract where whole working and functioning will exist
+contract CarContract
+{
+    struct Car 
+    {
+        string name;
+        uint year;
+    }
+    
+    mapping(address => Car) carOwner;
+    function addCar(string memory _name, uint _year) public
+    {
+        Car memory currentCar = Car(_name, _year);
+        carOwner[msg.sender] = carOwner;
+    }
+
+    
+
+}
