@@ -13,9 +13,13 @@ contract CarContract
     function addCar(string memory _name, uint _year) public
     {
         Car memory currentCar = Car(_name, _year);
-        carOwner[msg.sender] = carOwner;
+        carOwner[msg.sender] = currentCar;
     }
 
-    
+    function getCar() public view returns (string memory) 
+    {
+        address owner = msg.sender;
+        return carOwner[owner].name;
+    }
 
 }
