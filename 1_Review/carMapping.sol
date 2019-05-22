@@ -12,8 +12,11 @@ contract CarContract
     mapping(address => Car) carOwner;
     function addCar(string memory _name, uint _year) public
     {
+        if (carOwner[msg.sender].year != 0)
+        {
         Car memory currentCar = Car(_name, _year);
-        carOwner[msg.sender] = currentCar;
+        carOwner[msg.sender] = currentCar;    
+        }
     }
 
     function getCar() public view returns (string memory) 
