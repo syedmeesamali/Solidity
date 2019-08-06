@@ -3,9 +3,22 @@ pragma solidity ^0.5.1;
 //Review of solidity contracts
 contract MyContract
 {
- string public stringValue = "myString";
- bool public myBool = true;
- int public myint = -1;
- uint public myint2 = 200;
+    enum State { Waiting, Raedy, Active }
+    State public state;
+    
+    constructor() public 
+    {
+        state = State.Waiting;
+    }
+    
+    function activate() public  
+    {
+        state = State.Active;
+    }
+    
+    function isActive() public view returns(bool)
+    {
+        return state == State.Active;
+    }
  
 }
