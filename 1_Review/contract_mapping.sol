@@ -6,6 +6,13 @@ contract PeopleMapping
     uint256 public peopleCount = 0;
     mapping(uint => Person) public people;
     
+    address owner;
+    modifier onlyOwner()
+    {
+        require(msg.sender == owner);
+        _;
+    }
+    
     struct Person
     {
         uint _id;
@@ -13,10 +20,21 @@ contract PeopleMapping
         string _lastName;
     }
     
-    //Constructor method
-    function addPerson(string memory _firstName, string memory _lastName) public
+    constructor() public
     {
-        peopleCount += 1;
+        owner = msg.sender;
+    }
+    
+    //Constructor method
+    function addPerson(string memory _firstName, string memory _lastName) public onlyOwner
+    {
+        incrementCount();
         people[peopleCount] = Person(peopleCount, _firstName, _lastName);
     }
+    
+    function incrementCount() internal 
+    {
+        peopleCount += 1;
+    }
+       
 }
