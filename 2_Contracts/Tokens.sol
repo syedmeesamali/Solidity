@@ -1,13 +1,16 @@
 pragma solidity ^0.5.1;
 
+contract ERC20Token {
+    string public name;
+    mapping(address => uint256) public balances;
+    
+    function mint() public {
+        balances[msg.sender]++;
+    }
+}
 //Review of solidity contracts
 contract MyContract {
-    
-    mapping(address => uint256) public balances;
     address payable wallet;
-    
-    event Purchase( address indexed _buyer, uint256 _amount );
-    
     constructor (address payable _wallet) public {
         wallet = _wallet;
     }
@@ -17,10 +20,7 @@ contract MyContract {
     }
     
     function buyToken() public payable{
-        //buy a token 
-        balances[msg.sender] += 1;
         wallet.transfer(msg.value);
-        emit Purchase(msg.sender, 1);
     }
     
 }
