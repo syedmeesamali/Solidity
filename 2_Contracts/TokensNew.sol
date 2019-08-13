@@ -7,7 +7,6 @@ contract ERC20Token {
     
     constructor(string memory _name) public {
         name = _name;
-        
     }
     
     function mint() public {
@@ -17,11 +16,12 @@ contract ERC20Token {
 
 //Second contract - Using inheritence from main ERC20Token
 contract MyToken is ERC20Token {
+    //Global variables
     string public symbol;
-    
     address[] public owners;
     uint256 ownerCount;
     
+    //Constructor function 
     constructor(
         string memory _name, 
         string memory _symbol
@@ -30,10 +30,10 @@ contract MyToken is ERC20Token {
         symbol = _symbol;
     } 
     
+    //Minting function 
     function mint() public {
         super.mint();
         ownerCount++;
         owners.push(msg.sender);
     }
-    
 }
